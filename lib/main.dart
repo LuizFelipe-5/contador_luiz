@@ -25,9 +25,21 @@ class MyPage extends StatefulWidget {
 class _MyPageState extends State<MyPage> {
   int count = 0;
 
-  void _counter() {
+  void _counterAdd() {
     setState(() {
       count++;
+    });
+  }
+
+  void _counterDecrease() {
+    setState(() {
+      count--;
+    });
+  }
+
+  void _counterReset() {
+    setState(() {
+      count = 0;
     });
   }
 
@@ -38,11 +50,28 @@ class _MyPageState extends State<MyPage> {
         title: Text('Meu Contador'),
         centerTitle: true,
       ),
-      body: Center(
-        child: Text('$count'),
+      body: Container(
+        width: double.infinity,
+        height: double.infinity,
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            Text('$count'),
+            SizedBox(
+              height: 20,
+            ),
+            FloatingActionButton(child: Text('+'), onPressed: _counterAdd),
+            SizedBox(
+              height: 20,
+            ),
+            FloatingActionButton(child: Text('-'), onPressed: _counterDecrease),
+            SizedBox(
+              height: 20,
+            ),
+            FloatingActionButton(child: Text('0'), onPressed: _counterReset),
+          ],
+        ),
       ),
-      floatingActionButton:
-          FloatingActionButton(child: Text('Add'), onPressed: _counter),
     );
   }
 }
